@@ -6,13 +6,21 @@ import bell_icon from '../assets/images/bell_icon.png'
 import profile_icon from '../assets/images/profile_icon.jpg'
 import '../styles/Header.css'
 import { SEARCH_ICON } from './utils/constants'
+import { useDispatch } from 'react-redux'
+import { toggleSidebar } from './utils/sidebarSlice'
 
 
 const Header = () => {
+
+    const dispatch = useDispatch();
+    const toggleSidebarHandler = () => {
+        dispatch(toggleSidebar())
+    }
+
   return (
     <div className='header'>
         <div className="h-left">
-            <img className='menu-icon' src={menu_icon} alt="menu-icon" />
+            <img onClick={() => toggleSidebarHandler()} className='menu-icon' src={menu_icon} alt="menu-icon" />
             <img className='youtube-logo' src={youtube_logo} alt="youtube-logo" />
         </div>
         <div className="h-middle">
