@@ -3,6 +3,12 @@
   gap: 15px;
   overflow-x: hidden;
   white-space: nowrap;
+  justify-content: center;
+  /* margin-top: 5px; */
+  margin-left: 210px;
+  position: fixed;
+  background-color: #fff;
+  padding-bottom: 10px;
 }
 
 .btn {
@@ -11,4 +17,12 @@
   outline: none;
   background-color: #f0eeeede;
   border-radius: 5px;
+  cursor: pointer;
 }
+
+.btn:focus {
+  background-color: #000;
+  color: #fff;
+}
+
+

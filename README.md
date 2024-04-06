@@ -1,3 +1,10 @@
+# NOTE 
+
+Make sure to change the name of .env_sample to .env and use your API_KEY if u want to test the app locally 
+or u can create another file named .env and keep your API_KEY there and when deploying don't forget to 
+include .env(the one with ur key) to .gitignore and u can just push that .env_sample for demonstration  purposes.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
