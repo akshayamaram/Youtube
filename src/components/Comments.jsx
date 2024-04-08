@@ -69,6 +69,20 @@ const Comments = () => {
     setComments(commentsCopy)
   };
 
+const handleDeleteComment = (path) => {
+  const pathArray = path.split("_");
+  let commentsCopy = comments;
+  let updatedComments = [...commentsCopy];
+  let currentComments = updatedComments;
+
+  for (let i = 0; i < pathArray.length - 1; i++) {
+    currentComments = currentComments[pathArray[i]].childComments;
+  }
+
+  currentComments.splice(pathArray[pathArray.length - 1], 1);
+  setComments([...updatedComments]);
+};
+
   return (
     <div className="comments-wrapper">
       <h2 className="comments-title">comments</h2>
@@ -93,6 +107,7 @@ const Comments = () => {
             key={index}
             addCommentsOnReply={addCommentsOnReply}
             path={`${index}`}
+            onDeleteClicked={(path) => handleDeleteComment(path)}
           />
         ))}
       </div>
@@ -100,7 +115,7 @@ const Comments = () => {
   );
 };
 
-const CommentBlock = ({ comment, index, addCommentsOnReply, path }) => {
+const CommentBlock = ({ comment, index, addCommentsOnReply, path, onDeleteClicked }) => {
 
   const [text, setText] = useState("");
   const [isReplyClicked, setIsReplyClicked] = useState(false);
@@ -115,6 +130,15 @@ const CommentBlock = ({ comment, index, addCommentsOnReply, path }) => {
     setIsReplyClicked(false);
   };
 
+  const onCancelClicked = () => {
+    setIsReplyClicked(false);
+    setText(""); // reset the input field after adding a comment
+  }
+
+  const handleDeleteClicked = () => {
+    onDeleteClicked(path);
+  };
+
   return (
     <div className="comment-card" key={index}>
       <p className="comment-text">{comment.text}</p>
@@ -122,6 +146,7 @@ const CommentBlock = ({ comment, index, addCommentsOnReply, path }) => {
         <button className="reply-btn" onClick={onReplyClicked}>
           Reply
         </button>
+        <button className="delete-btn reply-btn" onClick={handleDeleteClicked}>Delete</button>
       </div>
 
       {isReplyClicked && (
@@ -135,18 +160,20 @@ const CommentBlock = ({ comment, index, addCommentsOnReply, path }) => {
           <button className="reply-add-btn" onClick={onAddNestedComments}>
             Add
           </button>
+          <button className="cancel-btn reply-add-btn" onClick={onCancelClicked}>Cancel</button>
         </div>
       )}
 
       <div className="recursive-comments">
         {comment.childComments.map((comment, index) => {
-          return(
+          return (
             <CommentBlock
               comment={comment}
               index={index}
               key={index}
               addCommentsOnReply={addCommentsOnReply}
               path={`${path}_${index}`}
+              onDeleteClicked={onDeleteClicked}
             />
           );
         })}
