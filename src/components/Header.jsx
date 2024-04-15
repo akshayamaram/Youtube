@@ -19,8 +19,8 @@ const Header = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const searchCache = useSelector((store) => store.search)
-  const dispatch = useDispatch()
+  const searchCache = useSelector((store) => store.search);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     /* 
@@ -29,10 +29,10 @@ const Header = () => {
     */
 
     const timer = setTimeout(() => {
-      if(searchCache[searchQuery]) {
+      if (searchCache[searchQuery]) {
         setSuggestions(searchCache[searchQuery]);
       } else {
-        getSearchSuggestions()
+        getSearchSuggestions();
       }
     }, 200);
 
@@ -42,18 +42,29 @@ const Header = () => {
   }, [searchQuery]);
 
   const getSearchSuggestions = async () => {
-    console.log(searchQuery);
-    const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
-    const json = await data.json();
-    // console.log(json[1]);
-    setSuggestions(json[1]);
+    // console.log(searchQuery);
 
-    /** update  cache */
-    dispatch(cacheResults({
-      [searchQuery]: json[1],
-    }))
+    const url = YOUTUBE_SEARCH_API + searchQuery;
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error("Failed to fetch search suggestions");
+      }
+      const data = await response.json(); // declare the data variable here
+      // console.log(data[1]);
+      setSuggestions(data[1]);
+
+      /** update  cache */
+      dispatch(
+        cacheResults({
+          [searchQuery]: data[1],
+        })
+      );
+    } catch (error) {
+      alert("please install cors extension and enable it to test search suggestions feature, will fix it soon...");
+      console.error(error);
+    }
   };
-
 
   const toggleSidebarHandler = () => {
     dispatch(toggleSidebar());

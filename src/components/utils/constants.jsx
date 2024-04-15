@@ -9,6 +9,8 @@ export const YOUTUBE_VIDEOS_API =
 export const YOUTUBE_SEARCH_API =
   "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 
+export const YOUTUBE_SEARCH_API_2 = `https://www.googleapis.com/youtube/v3/search?key=${googleapikey}&q=`;
+
 export const SEARCH_ICON = (
   <svg
     className="feather feather-search"
