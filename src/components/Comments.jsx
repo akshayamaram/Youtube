@@ -1,33 +1,33 @@
 import React, { useState } from "react";
 import "../styles/Comments.css";
 
-const sampleCommentsDataStructure = [
-  {
-    text: "comment 1",
-    childComments: [
-      {
-        text: "comment 1.1",
-        childComments: [
-          {
-            text: "comment 1.1.1",
-            childComments: [],
-          },
-        ],
-      },
-      {
-        text: "comment 1.2",
-        childComments: [],
-      },
-    ],
-  },
-  {
-    text: "comment 2",
-    childComments: [],
-  },
-  {
-    text: "comment 3",
-  },
-];
+// const sampleCommentsDataStructure = [
+//   {
+//     text: "comment 1",
+//     childComments: [
+//       {
+//         text: "comment 1.1",
+//         childComments: [
+//           {
+//             text: "comment 1.1.1",
+//             childComments: [],
+//           },
+//         ],
+//       },
+//       {
+//         text: "comment 1.2",
+//         childComments: [],
+//       },
+//     ],
+//   },
+//   {
+//     text: "comment 2",
+//     childComments: [],
+//   },
+//   {
+//     text: "comment 3",
+//   },
+// ];
 
 const Comments = () => {
 

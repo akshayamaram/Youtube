@@ -11,7 +11,7 @@ import {
   YOUTUBE_SEARCH_API,
 } from "./utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleSidebar } from "./utils/sidebarSlice";
+// import { toggleSidebar } from "./utils/sidebarSlice";
 import { cacheResults } from "./utils/searchSlice";
 
 const Header = () => {
@@ -39,6 +39,7 @@ const Header = () => {
     return () => {
       clearTimeout(timer);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery]);
 
   const getSearchSuggestions = async () => {
@@ -66,9 +67,9 @@ const Header = () => {
     }
   };
 
-  const toggleSidebarHandler = () => {
-    dispatch(toggleSidebar());
-  };
+  // const toggleSidebarHandler = () => {
+  //   dispatch(toggleSidebar());
+  // };
 
   /**
    * * I intentionally not using those dispatch because i dont want to include

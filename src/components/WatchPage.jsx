@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/WatchPage.css";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import Comments from "./Comments";
 import '../styles/Comments.css';
 import LiveChat from "./LiveChat";
